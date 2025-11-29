@@ -9,7 +9,7 @@
         /* ===== Fundo e layout ===== */
         body {
             font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f5dc, #d3d3d3); /* Bege e cinza suave */
+            background: linear-gradient(135deg, #8b0000, #b30000); /* Vermelho escuro → forte */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,30 +19,39 @@
 
         /* ===== Estilo do formulário ===== */
         form {
-            background-color: #fffaf0; /* Bege claro */
+            background-color: #fff5f5; /* Vermelho super claro */
             padding: 35px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            width: 400px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            width: 420px;
             transition: all 0.3s ease;
+            animation: surgir 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            border-top: 4px solid #cc0000; /* detalhe vermelho */
+        }
+
+        @keyframes surgir {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         form:hover {
             transform: scale(1.02);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
         }
 
-        /* ===== Título ===== */
+        /* ===== Títulos ===== */
         h2 {
             text-align: center;
-            color: #333;
-            margin-bottom: 10px;
+            color: #b30000;
         }
 
         h4 {
             text-align: center;
-            color: #666;
-            margin-bottom: 20px;
+            color: #7a0000;
             font-style: italic;
         }
 
@@ -51,29 +60,29 @@
             display: block;
             margin-top: 15px;
             font-weight: bold;
-            color: #444;
+            color: #700000;
         }
 
-        input, textarea, button {
+        input, textarea, button, a {
             width: 100%;
             padding: 10px;
             margin-top: 8px;
-            border: 1px solid #bbb;
+            border: 1px solid #dd6b6b;
             border-radius: 6px;
             font-size: 15px;
-            background-color: #f9f9f9;
+            background-color: #fff2f2;
             transition: 0.2s ease;
         }
 
         input:focus, textarea:focus {
-            border-color: #999;
-            background-color: #fff;
+            border-color: #b30000;
+            background-color: #ffffff;
             outline: none;
         }
 
         /* ===== Botão ===== */
         button {
-            background-color: #808080;
+            background-color: #b30000;
             color: white;
             border: none;
             cursor: pointer;
@@ -84,17 +93,40 @@
         }
 
         button:hover {
-            background-color: #5c5c5c;
+            background-color: #7a0000;
         }
 
-        /* ===== Mensagem de confirmação ===== */
+        /* ===== Música ===== */
+        .musicas a {
+            background-color: #ffe5e5;
+            border: 1px solid #ffb3b3;
+            color: #7a0000;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .musicas a:hover {
+            background-color: #ffcccc;
+        }
+
+        /* ===== Mensagem ===== */
         .mensagem {
             text-align: center;
-            margin-top: 15px;
-            color: #2e2e2e;
+            margin-top: 20px;
+            padding: 10px;
+            color: white;
+            background: #cc0000;
+            border-radius: 8px;
             font-weight: bold;
             display: none;
+            animation: aparecer 0.5s ease forwards;
         }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
     </style>
 </head>
 <body>
@@ -115,9 +147,17 @@
         <label for="descricao">Sobre mim:</label>
         <textarea id="descricao" name="descricao" rows="4">Sou Victor Gabriel Lima Lopes, um estudante dedicado e apaixonado por tecnologia. Tenho interesse em programação, desenvolvimento de sistemas e inovação digital. Busco constantemente aprimorar meus conhecimentos e transformar ideias em projetos criativos e funcionais.</textarea>
 
+        <div class="musicas">
+            <label>Músicas Preferidas:</label>
+
+            <a href="https://youtu.be/WGU_4-5RaxU?si=1izPU2yITO5w7VlS" target="_blank">
+                🎵 Bohemian Rhapsody – Queen
+            </a>
+        </div>
+
         <button type="submit">Enviar</button>
 
-        <div id="mensagem" class="mensagem">✅ Formulário enviado com sucesso! Obrigado, Victor!</div>
+        <div id="mensagem" class="mensagem">✅ Formulário enviado com sucesso! Valeu, Victor! 🔥</div>
     </form>
 
     <script>
@@ -125,6 +165,10 @@
             event.preventDefault();
             const mensagem = document.getElementById('mensagem');
             mensagem.style.display = 'block';
+
+            setTimeout(() => {
+                mensagem.style.display = 'none';
+            }, 3500);
         }
     </script>
 
